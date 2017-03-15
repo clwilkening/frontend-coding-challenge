@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
+import {DropdownButton, MenuItem, Button} from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
-// import fetch from 'whatwg-fetch';
 
 class EventList extends Component {
   constructor(props){
     super(props);
 
     this.renderEvents = this.renderEvents.bind(this);
-    this.inputRef = this.inputRef.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.renderEvents()
-  // }
 
   renderEvents() {
     const events = this.props.events;
     let { byTitle, byDate } = this.props;
     let eventElements = [];
-    var eventArr = [];
+    let eventArr = [];
       events.forEach((event) => {
         let start = moment(event.start_time).format('LLL');
         let end = moment(event.end_time).format('LLL')
@@ -58,16 +52,12 @@ class EventList extends Component {
     let setTitle = this.props.sortByTitle;
     return(
       <div>
-        Filter:
-        <button onClick={() => setDate()}>Date</button>
-        <button onClick={() => setTitle()}>Title</button>
+        <DropdownButton title="Filter by" id="bg-nested-dropdown">
+          <MenuItem onClick={() => setDate()}>Date</MenuItem>
+          <MenuItem onClick={() => setTitle()}>Title</MenuItem>
+        </DropdownButton>
       </div>
     )
-  }
-
-  inputRef() {
-    let input = this.input.ref;
-    console.log(input)
   }
 
   render() {
