@@ -51,9 +51,7 @@ class App extends Component {
         <div className="App-header">
           <h2>Eventable</h2>
         </div>
-        <p className="App-intro">
         <EventList events={this.state.events}/>
-        </p>
       </div>
     );
   }
