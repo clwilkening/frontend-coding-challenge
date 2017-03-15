@@ -10,9 +10,12 @@ class App extends Component {
 
     this.getEvents = this.getEvents.bind(this);
     this.setEvents = this.setEvents.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
+    this.sortByTitle = this.sortByTitle.bind(this);
 
     this.state = {
-      events: []
+      events: [],
+      byTitle: false,
     }
   }
 
@@ -45,13 +48,26 @@ class App extends Component {
     })
   }
 
+  sortByDate(){
+    this.setState({ byTitle: false })
+  };
+
+  sortByTitle(){
+    this.setState({ byTitle: true })
+  };
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h2>Eventable</h2>
         </div>
-        <EventList events={this.state.events}/>
+        <EventList
+          events={this.state.events}
+          byTitle={this.state.byTitle}
+          sortByTitle={this.sortByTitle}
+          sortByDate={this.sortByDate}
+          />
       </div>
     );
   }
