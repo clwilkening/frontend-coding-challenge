@@ -25,9 +25,9 @@ class Search extends Component {
           <FormControl
             type="text"
             defaultValue={this.props.search}
-            placeholder="Enter text"
+            placeholder="Search for an event"
             onChange={(e) => this.props.handleChange(e)}
-            onKeyDown={(e) => this.enter(e)}
+            onKeyPress={(e) => this.enter(e)}
             />
           </FormGroup>
         </form>

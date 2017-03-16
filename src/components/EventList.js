@@ -11,8 +11,9 @@ class EventList extends Component {
   }
 
   renderEvents() {
-    const events = this.props.events;
-    let { byTitle, byDate } = this.props;
+    let events = this.props.events;
+    console.log('events ', events)
+    let { byTitle } = this.props;
     let eventElements = [];
     let eventArr = [];
       events.forEach((event) => {
@@ -36,8 +37,6 @@ class EventList extends Component {
             let title = event.title.toLowerCase().split(' ');
             let search = this.props.search.toLowerCase();
             let split = search.split(' ')
-            console.log('split ', split)
-            console.log('title ', title)
             title.forEach((word) => {
               if (word === search){
                 eventElements.push(
@@ -51,8 +50,6 @@ class EventList extends Component {
             })
             for (let i = 0; i<title.length; i ++){
               if (title[i] === split[i]) {
-                console.log('titleagain ', title)
-                console.log('splitagain ', split)
                 eventElements.push(
                   <div key={event.title}>
                     <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
@@ -79,8 +76,6 @@ class EventList extends Component {
             let title = event.title.toLowerCase().split(' ');
             let search = this.props.search.toLowerCase();
             let split = search.split(' ')
-            console.log('split ', split)
-            console.log('title ', title)
             title.forEach((word) => {
               if (word === search){
                 eventElements.push(
@@ -94,8 +89,6 @@ class EventList extends Component {
             })
             for (let i = 0; i<title.length; i ++){
               if (title[i] === split[i]) {
-                console.log('titleagain ', title)
-                console.log('splitagain ', split)
                 eventElements.push(
                   <div key={event.title}>
                     <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
@@ -114,12 +107,19 @@ class EventList extends Component {
   filter = () => {
     let setDate = this.props.sortByDate;
     let setTitle = this.props.sortByTitle;
+    let showForm = this.props.showForm;
     return(
       <div>
         <DropdownButton title="Filter by" id="bg-nested-dropdown">
           <MenuItem onClick={() => setDate()}>Date</MenuItem>
           <MenuItem onClick={() => setTitle()}>Title</MenuItem>
         </DropdownButton>
+        {this.props.byTitle === false ?
+        <p>Date</p>
+        :
+        <p>Title</p>
+        }
+        <Button onClick={() => showForm()}>Add Event</Button>
       </div>
     )
   }
