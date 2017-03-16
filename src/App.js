@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Search from './components/Search'
 import EventList from './components/EventList';
 // import config from './config.js'
 
@@ -12,10 +13,12 @@ class App extends Component {
     this.setEvents = this.setEvents.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
     this.sortByTitle = this.sortByTitle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       events: [],
       byTitle: false,
+      search: '',
     }
   }
 
@@ -43,17 +46,25 @@ class App extends Component {
   }
 
   setEvents(events){
-    this.setState({
-      events,
-    })
+    this.setState({ events });
+  };
+
+  handleChange(e){
+    let letter = e.target.value;
+    // if (letter === " "){
+    //   letter.replace(&nbsp;, "");
+    //   console.log(letter)
+    //   this.setState({search: letter})
+    // } else {
+      this.setState({ search: e.target.value })
   }
 
   sortByDate(){
-    this.setState({ byTitle: false })
+    this.setState({ byTitle: false });
   };
 
   sortByTitle(){
-    this.setState({ byTitle: true })
+    this.setState({ byTitle: true });
   };
 
   render() {
@@ -62,7 +73,12 @@ class App extends Component {
         <div className="App-header">
           <h2>Eventable</h2>
         </div>
+        <Search
+          search={this.state.search}
+          handleChange={this.handleChange}
+        />
         <EventList
+          search={this.state.search}
           events={this.state.events}
           byTitle={this.state.byTitle}
           sortByTitle={this.sortByTitle}

@@ -24,24 +24,88 @@ class EventList extends Component {
       if (byTitle === true) {
         let byTitle = _.sortBy(eventArr, ['title']);
         byTitle.forEach((event) => {
-        eventElements.push(
-          <div key={event.title}>
-            <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-            <p>Start: {event.start}</p>
-            <p>End: {event.end}</p>
-          </div>
-        )
-      })
+          if (this.props.search === "") {
+            eventElements.push(
+              <div key={event.title}>
+                <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                <p>Start: {event.start}</p>
+                <p>End: {event.end}</p>
+              </div>
+            )
+          } else {
+            let title = event.title.toLowerCase().split(' ');
+            let search = this.props.search.toLowerCase();
+            let split = search.split(' ')
+            console.log('split ', split)
+            console.log('title ', title)
+            title.forEach((word) => {
+              if (word === search){
+                eventElements.push(
+                  <div key={event.title}>
+                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                    <p>Start: {event.start}</p>
+                    <p>End: {event.end}</p>
+                  </div>
+                )
+              }
+            })
+            for (let i = 0; i<title.length; i ++){
+              if (title[i] === split[i]) {
+                console.log('titleagain ', title)
+                console.log('splitagain ', split)
+                eventElements.push(
+                  <div key={event.title}>
+                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                    <p>Start: {event.start}</p>
+                    <p>End: {event.end}</p>
+                  </div>
+                )
+              }
+            }
+          }
+        })
       } else {
         let byDate = _.sortBy(eventArr, ['stamp']);
         byDate.forEach((event) => {
-        eventElements.push(
-          <div key={event.title}>
-            <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-            <p>Start: {event.start}</p>
-            <p>End: {event.end}</p>
-          </div>
-          )
+          if (this.props.search === "") {
+            eventElements.push(
+              <div key={event.title}>
+                <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                <p>Start: {event.start}</p>
+                <p>End: {event.end}</p>
+              </div>
+            )
+          } else {
+            let title = event.title.toLowerCase().split(' ');
+            let search = this.props.search.toLowerCase();
+            let split = search.split(' ')
+            console.log('split ', split)
+            console.log('title ', title)
+            title.forEach((word) => {
+              if (word === search){
+                eventElements.push(
+                  <div key={event.title}>
+                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                    <p>Start: {event.start}</p>
+                    <p>End: {event.end}</p>
+                  </div>
+                )
+              }
+            })
+            for (let i = 0; i<title.length; i ++){
+              if (title[i] === split[i]) {
+                console.log('titleagain ', title)
+                console.log('splitagain ', split)
+                eventElements.push(
+                  <div key={event.title}>
+                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
+                    <p>Start: {event.start}</p>
+                    <p>End: {event.end}</p>
+                  </div>
+                )
+              }
+            }
+          }
         })
       }
       return eventElements;
