@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import moment from 'moment';
-import Search from './components/Search'
+import {Grid, Row, Column, Clearfix} from 'react-bootstrap';
+import Search from './components/Search';
 import EventList from './components/EventList';
 import EventForm from './components/EventForm';
 
@@ -122,7 +123,8 @@ class App extends Component {
           <h2>Eventable</h2>
         </div>
         { this.state.showForm === false ?
-          <div>
+      <Grid>
+        <div>
           <Search
             search={this.state.search}
             handleChange={this.handleChange}
@@ -136,7 +138,9 @@ class App extends Component {
             showForm={this.showForm}
             />
           </div>
+        </Grid>
           :
+        <Grid>
           <EventForm
             newStart={newStart}
             newStartTime={newStartTime}
@@ -150,6 +154,7 @@ class App extends Component {
             handleEndTime={this.handleEndTime}
             submitEvent={this.submitEvent}
           />
+          </Grid>
         }
       </div>
     );

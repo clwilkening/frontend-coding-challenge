@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DropdownButton, MenuItem, Button} from 'react-bootstrap';
+import {DropdownButton, MenuItem, Button, Row, Col} from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 
@@ -27,11 +27,11 @@ class EventList extends Component {
         byTitle.forEach((event) => {
           if (this.props.search === "") {
             eventElements.push(
-              <div key={event.title}>
-                <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                <p>Start: {event.start}</p>
-                <p>End: {event.end}</p>
-              </div>
+              <Col className="event" key={event.title}>
+                <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                <span>Start:</span> <p>{event.start}</p>
+                <span>End:</span> <p>{event.end}</p>
+              </Col>
             )
           } else {
             let title = event.title.toLowerCase().split(' ');
@@ -40,22 +40,22 @@ class EventList extends Component {
             title.forEach((word) => {
               if (word === search){
                 eventElements.push(
-                  <div key={event.title}>
-                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                    <p>Start: {event.start}</p>
-                    <p>End: {event.end}</p>
-                  </div>
+                  <Col className="event" key={event.title}>
+                    <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <span>Start:</span> <p>{event.start}</p>
+                    <span>End:</span> <p>{event.end}</p>
+                  </Col>
                 )
               }
             })
             for (let i = 0; i<title.length; i ++){
               if (title[i] === split[i]) {
                 eventElements.push(
-                  <div key={event.title}>
-                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                    <p>Start: {event.start}</p>
-                    <p>End: {event.end}</p>
-                  </div>
+                  <Col className="event" key={event.title}>
+                    <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <span>Start:</span> <p>{event.start}</p>
+                    <span>End:</span> <p>{event.end}</p>
+                  </Col>
                 )
               }
             }
@@ -66,11 +66,11 @@ class EventList extends Component {
         byDate.forEach((event) => {
           if (this.props.search === "") {
             eventElements.push(
-              <div key={event.title}>
-                <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                <p>Start: {event.start}</p>
-                <p>End: {event.end}</p>
-              </div>
+              <Col className="event" key={event.title}>
+                <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                <span>Start:</span> <p>{event.start}</p>
+                <span>End:</span> <p>{event.end}</p>
+              </Col>
             )
           } else {
             let title = event.title.toLowerCase().split(' ');
@@ -79,22 +79,22 @@ class EventList extends Component {
             title.forEach((word) => {
               if (word === search){
                 eventElements.push(
-                  <div key={event.title}>
-                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                    <p>Start: {event.start}</p>
-                    <p>End: {event.end}</p>
-                  </div>
+                  <Col className="event" key={event.title}>
+                    <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <span>Start:</span> <p>{event.start}</p>
+                    <span>End:</span> <p>{event.end}</p>
+                  </Col>
                 )
               }
             })
             for (let i = 0; i<title.length; i ++){
               if (title[i] === split[i]) {
                 eventElements.push(
-                  <div key={event.title}>
-                    <a href={event.url} target="_blank"><h4>{event.title}</h4></a>
-                    <p>Start: {event.start}</p>
-                    <p>End: {event.end}</p>
-                  </div>
+                  <Col className="event" key={event.title}>
+                    <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <span>Start:</span> <p>{event.start}</p>
+                    <span>End:</span> <p>{event.end}</p>
+                  </Col>
                 )
               }
             }
@@ -109,27 +109,35 @@ class EventList extends Component {
     let setTitle = this.props.sortByTitle;
     let showForm = this.props.showForm;
     return(
-      <div>
+      <Row>
+      <Col xs={2}>
         <DropdownButton title="Filter by" id="bg-nested-dropdown">
           <MenuItem onClick={() => setDate()}>Date</MenuItem>
           <MenuItem onClick={() => setTitle()}>Title</MenuItem>
         </DropdownButton>
+      </Col>
+      <Col xs={2} xsOffset={1} className="filter-by">
         {this.props.byTitle === false ?
         <p>Date</p>
         :
         <p>Title</p>
         }
+      </Col>
+      <Col xs={3} xsOffset={4}>
         <Button onClick={() => showForm()}>Add Event</Button>
-      </div>
+      </Col>
+      </Row>
     )
   }
 
   render() {
     return(
-      <div>
+      <Row>
+      <Col xs={12} sm={8} smOffset={2}>
         {this.filter()}
         {this.renderEvents()}
-      </div>
+      </Col>
+      </Row>
     )
   }
 };

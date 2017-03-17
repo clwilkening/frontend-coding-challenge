@@ -35,7 +35,7 @@ class EventForm extends Component {
 
   form() {
     return (
-      <Form horizontal>
+      <Form className="form-container" horizontal>
         <FormGroup
           controlId="formHorizontalTitle"
           validationState={this.validateTitle()}
@@ -117,7 +117,11 @@ class EventForm extends Component {
   };
 
   submitButton = () => {
-      return ( <Button onClick={() => this.submitEvent()}>Submit</Button> )
+      return (
+        <Col xs={12} sm={4} smOffset={5}>
+          <Button className="sub-btn" bsSize="large" onClick={() => this.submitEvent()}>Submit</Button>
+        </Col>
+      )
   }
 
   submitEvent(){
