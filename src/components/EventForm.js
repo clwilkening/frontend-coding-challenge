@@ -44,19 +44,19 @@ class EventForm extends Component {
           controlId="formHorizontalTitle"
           validationState={this.validateTitle()}
         >
-        <Col componentClass={ControlLabel} sm={2}>
-          Event Title:
-        </Col>
-        <Col sm={10}>
-        <FormControl
-            type="text"
-            defaultValue={this.props.newTitle}
-            placeholder="Enter new event title"
-            onChange={this.props.handleFormTitle}
-            onKeyPress={(e) => this.preventEnter(e)}
-          />
-        <FormControl.Feedback />
-        </Col>
+          <Col componentClass={ControlLabel} sm={2}>
+            Event Title:
+          </Col>
+          <Col sm={10}>
+            <FormControl
+                type="text"
+                defaultValue={this.props.newTitle}
+                placeholder="Enter new event title"
+                onChange={this.props.handleFormTitle}
+                onKeyPress={(e) => this.preventEnter(e)}
+              />
+            <FormControl.Feedback />
+          </Col>
         </FormGroup>
         <FormGroup
           controlId="formHorizontalDates"

@@ -38,8 +38,15 @@ class App extends Component {
     }
   }
 
+//will check local storage before making api call
   componentDidMount() {
-    this.getEvents();
+    const localStorageRef = localStorage.getItem('events');
+    console.log(localStorageRef)
+    if (localStorageRef) {
+      this.setState({ events: JSON.parse(localStorageRef) })
+    } else {
+      this.getEvents();
+    }
   }
 
 //gets the events from eventable API
@@ -126,7 +133,8 @@ class App extends Component {
       newEndTime: "",
       showForm: false
     });
-  }
+    localStorage.setItem('events', JSON.stringify(this.state.events));
+  };
 
   render() {
     const {newStart, newTitle, newEnd, newStartTime, newEndTime} = this.state
