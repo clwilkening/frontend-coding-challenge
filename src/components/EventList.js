@@ -10,19 +10,26 @@ class EventList extends Component {
     this.renderEvents = this.renderEvents.bind(this);
   }
 
+//will render the events from the api call
   renderEvents() {
     let events = this.props.events;
     let { byTitle } = this.props;
+    //eventElements are the elements that will be rendered to DOM
     let eventElements = [];
+    //eventArr is an array of data for each event
     let eventArr = [];
+    //loop through each event to get data for eventArr
       events.forEach((event) => {
         let start = moment(event.start_time).format('LLL');
         let end = moment(event.end_time).format('LLL')
         let timestamp = moment(event.start_time).format('x')
         eventArr.push({'title': event.title, 'start': start, 'end': end, 'url': event.url, 'stamp': timestamp, 'desc': event.description});
       })
+      //if searching by title state is true, this will run
       if (byTitle === true) {
+        //sort the information by title ascending
         let byTitle = _.sortBy(eventArr, ['title']);
+        //loop through to great DOM elements, only if the search bar is empty
         byTitle.forEach((event) => {
           if (this.props.search === "") {
             eventElements.push(
@@ -36,10 +43,12 @@ class EventList extends Component {
               </Col>
             )
           } else {
-            let title = event.title.toLowerCase().split(' ');
-            let search = this.props.search.toLowerCase();
-            let split = search.split(' ')
+            //if currently searching this code will run
+            let title = event.title.toLowerCase().split(' '); //set the title to lowercase, seperate words into array
+            let search = this.props.search.toLowerCase(); //current search input as lowercase
+            let split = search.split(' ') //split the search input into array
             title.forEach((word) => {
+              //if the word in title array matches the entire search input this will run
               if (word === search){
                 eventElements.push(
                   <Col className="event" key={event.title}>
@@ -54,6 +63,7 @@ class EventList extends Component {
               }
             })
             for (let i = 0; i<title.length; i ++){
+              //if the word in title array matches a word in split/search array
               if (title[i] === split[i]) {
                 eventElements.push(
                   <Col className="event" key={event.title}>
@@ -70,6 +80,7 @@ class EventList extends Component {
           }
         })
       } else {
+        //code does the same funcationality as above, but when filtering by date.
         let byDate = _.sortBy(eventArr, ['stamp']);
         byDate.forEach((event) => {
           if (this.props.search === "") {
@@ -122,9 +133,11 @@ class EventList extends Component {
     };
 
   filter = () => {
-    let setDate = this.props.sortByDate;
-    let setTitle = this.props.sortByTitle;
-    let showForm = this.props.showForm;
+    //create the filter button
+    let setDate = this.props.sortByDate;    //function for sorting by date
+    let setTitle = this.props.sortByTitle;  //function for sorting by title
+    let showForm = this.props.showForm;     //function for viewing the event form
+    //renders the filter button, currently filtering by, and add event button
     return(
       <Row>
       <Col xs={2}>
