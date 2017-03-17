@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DropdownButton, MenuItem, Button, Row, Col} from 'react-bootstrap';
+import {DropdownButton, MenuItem, Button, Row, Col, PanelGroup, Panel} from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 
@@ -12,7 +12,6 @@ class EventList extends Component {
 
   renderEvents() {
     let events = this.props.events;
-    console.log('events ', events)
     let { byTitle } = this.props;
     let eventElements = [];
     let eventArr = [];
@@ -20,7 +19,7 @@ class EventList extends Component {
         let start = moment(event.start_time).format('LLL');
         let end = moment(event.end_time).format('LLL')
         let timestamp = moment(event.start_time).format('x')
-        eventArr.push({'title': event.title, 'start': start, 'end': end, 'url': event.url, 'stamp': timestamp});
+        eventArr.push({'title': event.title, 'start': start, 'end': end, 'url': event.url, 'stamp': timestamp, 'desc': event.description});
       })
       if (byTitle === true) {
         let byTitle = _.sortBy(eventArr, ['title']);
@@ -29,6 +28,9 @@ class EventList extends Component {
             eventElements.push(
               <Col className="event" key={event.title}>
                 <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                <PanelGroup defaultActiveKey="2" accordion>
+                  <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                </PanelGroup>
                 <span>Start:</span> <p>{event.start}</p>
                 <span>End:</span> <p>{event.end}</p>
               </Col>
@@ -42,6 +44,9 @@ class EventList extends Component {
                 eventElements.push(
                   <Col className="event" key={event.title}>
                     <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <PanelGroup defaultActiveKey="2" accordion>
+                      <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                    </PanelGroup>
                     <span>Start:</span> <p>{event.start}</p>
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
@@ -53,6 +58,9 @@ class EventList extends Component {
                 eventElements.push(
                   <Col className="event" key={event.title}>
                     <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <PanelGroup defaultActiveKey="2" accordion>
+                      <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                    </PanelGroup>
                     <span>Start:</span> <p>{event.start}</p>
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
@@ -68,6 +76,9 @@ class EventList extends Component {
             eventElements.push(
               <Col className="event" key={event.title}>
                 <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                <PanelGroup defaultActiveKey="2" accordion>
+                  <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                </PanelGroup>
                 <span>Start:</span> <p>{event.start}</p>
                 <span>End:</span> <p>{event.end}</p>
               </Col>
@@ -81,6 +92,9 @@ class EventList extends Component {
                 eventElements.push(
                   <Col className="event" key={event.title}>
                     <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <PanelGroup defaultActiveKey="2" accordion>
+                      <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                    </PanelGroup>
                     <span>Start:</span> <p>{event.start}</p>
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
@@ -92,6 +106,9 @@ class EventList extends Component {
                 eventElements.push(
                   <Col className="event" key={event.title}>
                     <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                    <PanelGroup defaultActiveKey="2" accordion>
+                      <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                    </PanelGroup>
                     <span>Start:</span> <p>{event.start}</p>
                     <span>End:</span> <p>{event.end}</p>
                   </Col>

@@ -23,7 +23,6 @@ class App extends Component {
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleEndTime = this.handleEndTime.bind(this);
     this.submitEvent = this.submitEvent.bind(this);
-
     this.state = {
       events: [],
       byTitle: false,
