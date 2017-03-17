@@ -14,16 +14,19 @@ class EventForm extends Component {
 
   };
 
+//prevents page refresh on enter
   preventEnter = (e) => {
     if (e.charCode === 13) {
       e.preventDefault();
     };
   }
 
+//validates the title input
   validateTitle(){
     if (this.props.newTitle !== "") return 'success';
   }
 
+//validates the dates
   getValidationState() {
     const start = this.props.newStart + 'T' + this.props.newStartTime;
     const end = this.props.newEnd + 'T' + this.props.newEndTime;
@@ -33,6 +36,7 @@ class EventForm extends Component {
     else if (moment(end).isBefore(start)) return 'warning';
   };
 
+//renders the event form.
   form() {
     return (
       <Form className="form-container" horizontal>
@@ -116,6 +120,7 @@ class EventForm extends Component {
     );
   };
 
+//submit button the form, is only displayed if validated
   submitButton = () => {
       return (
         <Col xs={12} sm={4} smOffset={5}>
@@ -124,6 +129,7 @@ class EventForm extends Component {
       )
   }
 
+//action for submit button.
   submitEvent(){
     if (this.getValidationState() === 'success') {
       this.props.submitEvent();

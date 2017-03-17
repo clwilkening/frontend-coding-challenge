@@ -11,12 +11,14 @@ class Search extends Component {
 
   };
 
+//prevents page refresh if user hits enter
   enter(e){
     if (e.charCode === 13) {
       e.preventDefault();
     };
   }
 
+//creates the search bar, onChange for input, onKeyPress to prevent enter
   input(){
     return (
       <div>
