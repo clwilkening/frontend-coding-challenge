@@ -24,7 +24,7 @@ class EventList extends Component {
         let end = moment(event.end_time).format('LLL')
         let timestamp = moment(event.start_time).format('x')
         eventArr.push({'title': event.title, 'start': start, 'end': end, 'url': event.url, 'stamp': timestamp, 'desc': event.description});
-      })
+      });
       //if searching by title state is true, this will run
       if (byTitle === true) {
         //sort the information by title ascending
@@ -60,7 +60,7 @@ class EventList extends Component {
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
                 )
-              }
+              };
             })
             for (let i = 0; i<title.length; i ++){
               //if the word in title array matches a word in split/search array
@@ -75,10 +75,10 @@ class EventList extends Component {
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
                 )
-              }
-            }
-          }
-        })
+              };
+            };
+          };
+        });
       } else {
         //code does the same funcationality as above, but when filtering by date.
         let byDate = _.sortBy(eventArr, ['stamp']);
@@ -110,7 +110,7 @@ class EventList extends Component {
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
                 )
-              }
+              };
             })
             for (let i = 0; i<title.length; i ++){
               if (title[i] === split[i]) {
@@ -124,19 +124,19 @@ class EventList extends Component {
                     <span>End:</span> <p>{event.end}</p>
                   </Col>
                 )
-              }
-            }
-          }
-        })
-      }
+              };
+            };
+          };
+        });
+      };
       return eventElements;
     };
 
   filter = () => {
     //create the filter button
-    let setDate = this.props.sortByDate;    //function for sorting by date
-    let setTitle = this.props.sortByTitle;  //function for sorting by title
-    let showForm = this.props.showForm;     //function for viewing the event form
+    const setDate = this.props.sortByDate;    //function for sorting by date
+    const setTitle = this.props.sortByTitle;  //function for sorting by title
+    const showForm = this.props.showForm;     //function for viewing the event form
     //renders the filter button, currently filtering by, and add event button
     return(
       <Row>
