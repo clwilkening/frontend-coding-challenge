@@ -42,6 +42,7 @@ class App extends Component {
     this.getEvents();
   }
 
+//gets the events from eventable API
   getEvents(){
     let key = require('./config.json')
     fetch('https://api.eventable.com/v1/events/', {
@@ -61,27 +62,32 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+//set the event state
   setEvents(events){
     this.setState({ events });
   };
 
+//changes state when search bar is typed
   handleChange(e){
-    let letter = e.target.value;
       this.setState({ search: e.target.value })
   }
 
+//sorts the events by date
   sortByDate(){
     this.setState({ byTitle: false });
   };
 
+//sorts the events by title
   sortByTitle(){
     this.setState({ byTitle: true });
   };
 
+//renders the form, removes events from view
   showForm(){
     this.setState({ showForm: true })
   };
 
+//handles input/state for form title, date, start, and end.
   handleFormTitle(e){
     this.setState({ newTitle: e.target.value})
   };
@@ -98,10 +104,12 @@ class App extends Component {
     this.setState({ newEndTime: e.target.value})
   };
 
+//Renders events, removes form. Does not erase current form input.
   backButton(){
     this.setState({ showForm: false })
   }
 
+//adds the state from form, pushes it to event state
   submitEvent(){
     const start_time = this.state.newStart + 'T' + this.state.newStartTime;
     const end_time = this.state.newEnd + 'T' + this.state.newEndTime;

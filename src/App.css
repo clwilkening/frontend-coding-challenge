@@ -12,6 +12,7 @@ body{
   height:75px;
   padding: 20px;
   color: #097899; /*aliceblue*/
+  box-shadow: 0px 0px 3px 3px #f0ad4e;
 }
 
 .App-header h2 {
@@ -49,7 +50,7 @@ body{
 }
 
 .event:hover {
-  box-shadow: 5px 5px 8px grey;
+  box-shadow: 0px 0px 3px 5px #f0ad4e;
 }
 
 .event h4 {
