@@ -133,6 +133,7 @@ class EventForm extends Component {
   render() {
     return(
       <div>
+        <Button className="back-btn" onClick={() => this.props.backButton()}>Back</Button>
         {this.form()}
           {this.getValidationState() === 'success'
             ?

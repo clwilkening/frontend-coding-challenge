@@ -23,6 +23,8 @@ class App extends Component {
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleEndTime = this.handleEndTime.bind(this);
     this.submitEvent = this.submitEvent.bind(this);
+    this.backButton = this.backButton.bind(this);
+
     this.state = {
       events: [],
       byTitle: false,
@@ -96,6 +98,10 @@ class App extends Component {
     this.setState({ newEndTime: e.target.value})
   };
 
+  backButton(){
+    this.setState({ showForm: false })
+  }
+
   submitEvent(){
     const start_time = this.state.newStart + 'T' + this.state.newStartTime;
     const end_time = this.state.newEnd + 'T' + this.state.newEndTime;
@@ -141,6 +147,7 @@ class App extends Component {
           :
         <Grid>
           <EventForm
+            backButton={this.backButton}
             newStart={newStart}
             newStartTime={newStartTime}
             newEnd={newEnd}
