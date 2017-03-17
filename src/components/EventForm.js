@@ -9,7 +9,6 @@ class EventForm extends Component {
 
     this.form = this.form.bind(this);
     this.getValidationState = this.getValidationState.bind(this);
-    this.validateTitle = this.validateTitle.bind(this);
     this.submitEvent = this.submitEvent.bind(this);
 
   };
@@ -22,7 +21,7 @@ class EventForm extends Component {
   }
 
 //validates the title input
-  validateTitle(){
+  validateTitle = () => {
     if (this.props.newTitle !== "") return 'success';
   }
 

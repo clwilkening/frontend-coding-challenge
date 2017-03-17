@@ -1,32 +1,64 @@
+# Eventable Code Challenge
+##Chris Wilkening
 
-Your mission, should you choose to accept it, is to produce a React App with three primary components:
+[Deployed app](https://obscure-scrubland-26305.herokuapp.com/)
 
-1. A **List of events**. This component should initially render events that are retrieved from the [Eventable API](http://docs.eventable.apiary.io) using the provided credentials (in the email you received). It should also render events that are created and stored locally. The List should be sortable by title and start time.
-2. A **Form** component. Submitting the Form should create an event locally (*DO NOT MAKE AN API REQUEST WHEN CREATING AN EVENT*). An event should have a title, a start date-time and an end date-time. The form should not submit if there is no title or if the date-time is invalid (i.e. end date-time is before the start date-time).
-3. A **Search** component. Entering text into this component should filter the events in the List component by event title.
+![Photo of App](http://i.imgur.com/simrLpo.png)
 
-Fork this repo to get started. Try not to spend longer than three hours on this challenge. Good luck!
+###Technologies
+- React
+- Bootstrap
+- Eventable API
+- moment
+- lodash
 
-Some notes:
-- Do not install any additional packages — only use native ES6 functions and/or the packages that have been provided for you
-    * [React/ReactDOM](https://github.com/facebook/react)
-    * [lodash](https://github.com/lodash/lodash) is included, but most of what you need to do is doable with native ES6 functions
-    * [React Bootstrap](https://github.com/react-bootstrap/react-bootstrap), [Twitter (the OG) Bootstrap](https://github.com/twbs/bootstrap)
-    * [whatwg-fetch](https://github.com/github/fetch) for making api requests 
-    * [momentjs](http://momentjs.com/docs/)
-- The events you receive from the Eventable API will have a bunch of data attached to them. It's up to you whether to render that information.
-- Be creative! How your components render and style are entirely up to you. 
+###Setup
+- fork and clone
+- run ```npm install```
 
-When you're done, email us a link to your cloned repo with the solution.
-
-This repo was bootstrapped using [create-react-app](https://github.com/facebookincubator/create-react-app).
-
-Run the dev server:
+In the ```src``` folder, create a ```config.json```. The code in that folder should be...
 ```
-npm start
+{
+"token":"YOUR-EVENTABLE-API-KEY-HERE"
+}
+```
+- ```npm start```
+
+####Code Sample 
+
+```
+renderEvents() {
+    let events = this.props.events;
+    let { byTitle } = this.props;
+    //eventElements are the elements that will be rendered to DOM
+    let eventElements = [];
+    //eventArr is an array of data for each event
+    let eventArr = [];
+    //loop through each event to get data for eventArr
+      events.forEach((event) => {
+        let start = moment(event.start_time).format('LLL');
+        let end = moment(event.end_time).format('LLL')
+        let timestamp = moment(event.start_time).format('x')
+        eventArr.push({'title': event.title, 'start': start, 'end': end, 'url': event.url, 'stamp': timestamp, 'desc': event.description});
+      });
+      //if searching by title state is true, this will run
+      if (byTitle === true) {
+        //sort the information by title ascending
+        let byTitle = _.sortBy(eventArr, ['title']);
+        //loop through to great DOM elements, only if the search bar is empty
+        byTitle.forEach((event) => {
+          if (this.props.search === "") {
+            eventElements.push(
+              <Col className="event" key={event.title}>
+                <h4><a href={event.url} target="_blank">{event.title}</a></h4>
+                <PanelGroup defaultActiveKey="2" accordion>
+                  <Panel header="Event Info" eventKey="1"><p>{event.desc}</p></Panel>
+                </PanelGroup>
+                <span>Start:</span> <p>{event.start}</p>
+                <span>End:</span> <p>{event.end}</p>
+              </Col>
+            )
+          }
 ```
 
-Run tests:
-```
-npm test
-```
+##### Written by Chris Wilkening
