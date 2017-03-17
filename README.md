@@ -1,18 +1,18 @@
 # Eventable Code Challenge
-##Chris Wilkening
+## Chris Wilkening
 
 [Deployed app](https://obscure-scrubland-26305.herokuapp.com/)
 
 ![Photo of App](http://i.imgur.com/simrLpo.png)
 
-###Technologies
+### Technologies
 - React
 - Bootstrap
 - Eventable API
 - moment
 - lodash
 
-###Setup
+### Setup
 - fork and clone
 - run ```npm install```
 
@@ -24,7 +24,7 @@ In the ```src``` folder, create a ```config.json```. The code in that folder sho
 ```
 - ```npm start```
 
-####Code Sample 
+#### Code Sample 
 
 ```
 renderEvents() {
