@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import moment from 'moment';
-import {Grid, Row, Column, Clearfix} from 'react-bootstrap';
+import {Grid} from 'react-bootstrap';
 import Search from './components/Search';
 import EventList from './components/EventList';
 import EventForm from './components/EventForm';
@@ -41,7 +40,6 @@ class App extends Component {
 //will check local storage before making api call
   componentDidMount() {
     const localStorageRef = localStorage.getItem('events');
-    console.log(localStorageRef)
     if (localStorageRef) {
       this.setState({ events: JSON.parse(localStorageRef) })
     } else {
